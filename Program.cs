@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Runtime.InteropServices;
 
@@ -139,21 +139,21 @@ namespace fomultirun
             IntPtr processHandle = OpenProcess(0x1F0FFF, false, (int)pi.dwProcessId);
             Console.WriteLine("Handle: " + (int)pi.dwProcessId);
             
-            { // replaces fonline_instance
-                byte[] buffer = Encoding.ASCII.GetBytes(generateRandomString(16));
+            { // replaces foclassic_instance
+                byte[] buffer = Encoding.ASCII.GetBytes(generateRandomString(18));
                 uint OLD = 0;
                 int bytesWritten = 0;
-                VirtualProtectEx(processHandle, 0x7433b4, buffer.Length, PAGE_EXECUTE_READWRITE, out OLD);
-                WriteProcessMemory(processHandle, 0x7433b4, buffer, buffer.Length, out bytesWritten);
+                VirtualProtectEx(processHandle, 0x015BFA88, buffer.Length, PAGE_EXECUTE_READWRITE, out OLD);
+                WriteProcessMemory(processHandle, 0x015BFA88, buffer, buffer.Length, out bytesWritten);
                 Console.WriteLine("Bytes written: " + bytesWritten.ToString());
             }
-            
-            { // replaces fosync
+
+            { // replaces _fcsync_
                 byte[] buffer = Encoding.ASCII.GetBytes(generateRandomString(8));
                 uint OLD = 0;
                 int bytesWritten = 0;
-                VirtualProtectEx(processHandle, 0x73bcdc, buffer.Length, PAGE_EXECUTE_READWRITE, out OLD);
-                WriteProcessMemory(processHandle, 0x73bcdc, buffer, buffer.Length, out bytesWritten);
+                VirtualProtectEx(processHandle, 0x015BC920, buffer.Length, PAGE_EXECUTE_READWRITE, out OLD);
+                WriteProcessMemory(processHandle, 0x015BC920, buffer, buffer.Length, out bytesWritten);
                 Console.WriteLine("Bytes written: " + bytesWritten.ToString());
             }
             
